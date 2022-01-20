@@ -12,18 +12,22 @@
 
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
-        return (NULL);
-}
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*line;
+	int			rd;
 
-char    *ft_get_buff(int fd)
-{
-    char *buffer;
-    buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-    if (!buffer)
-        return (NULL);
-    buffer = read(fd, buffer, BUFFER_SIZE);
-    
+	rd = 1;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, "", 0) == -1)
+		return (NULL);
+	line = ft_strinit();
+	line = ft_joinandfree(line, buffer);
+	while (ft_strchr(buffer) == 0 && rd != -1)
+	{
+		rd = read(fd, buffer, BUFFER_SIZE);
+		buffer[rd] = '\0';
+		line = ft_joinandfree(line, buffer);
+	}
+	if (rd == -1 && !line)
 }
