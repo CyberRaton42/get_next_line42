@@ -12,6 +12,47 @@
 
 #include "get_next_line.h"
 
+char	*ft_get_line(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
+		i++;
+	while (s[i])
+	{
+		s[i] = '\0';
+		i++;
+	}
+	return (s);
+}
+
+void	ft_save_next_line(char *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
+		i++;
+	while (s[i])
+	{
+		s[j] = s[i];
+		i++;
+		j++;
+	}
+	while (s[j])
+	{
+		s[j] = '\0';
+		j++;
+	}
+}
+
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
@@ -23,11 +64,18 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_strinit();
 	line = ft_joinandfree(line, buffer);
-	while (ft_strchr(buffer) == 0 && rd != -1)
+	while (ft_strchr(buffer) == 0 && rd != 0)
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		buffer[rd] = '\0';
 		line = ft_joinandfree(line, buffer);
 	}
-	if (rd == -1 && !line)
+	if (rd == 0 && line[0] == 0)
+	{
+		free(line);
+		return (NULL);
+	}
+	line = ft_get_line(line);
+	ft_save_next_line(buffer);
+	return (line);
 }
