@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 14:51:55 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/01/21 19:28:17 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:45:40 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GET_NEXT_LINE_H
 
 # include <unistd.h>
-# include <stdarg.h>
 # include <stdlib.h>
 
 /* Main functions */
