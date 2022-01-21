@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 14:51:55 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/01/20 15:11:55 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:28:17 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-# include <string.h>
 # include <stdlib.h>
 
+/* Main functions */
 char	*get_next_line(int fd);
+char	*ft_get_line(char *line);
+void	ft_save_next_line(char *buffer);
+
+/* Additional functons */
 int		ft_strlen(char *s);
 char	*ft_strinit(void);
-char	*ft_joinandfree(char *s1, char *s2);
-int		ft_strchr(char *s);
+char	*ft_joinandfree(char *line, char *buffer);
+int		ft_strchr(char *buffer);
 
 #endif

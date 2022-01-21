@@ -6,11 +6,13 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 14:45:43 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/01/20 15:11:15 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:22:08 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/* Basic function outputing the length of a string */
 
 int	ft_strlen(char *s)
 {
@@ -22,56 +24,66 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
+/* Initializes a string by allocating memory to it and
+	setting it to a single '\0' */
+
 char	*ft_strinit(void)
 {
-	char	*dest;
+	char	*line;
 
-	dest = malloc(1 * sizeof(char));
-	if (!dest)
+	line = malloc(1 * sizeof(char));
+	if (!line)
 		return (NULL);
-	dest[0] = '\0';
-	return (dest);
+	line[0] = '\0';
+	return (line);
 }
 
-char	*ft_joinandfree(char *s1, char *s2)
+/* Creates a new string containing the start of the current
+	line and the buffer, and frees the memory of the variable
+	containing the start of the line to reallocate it to the 
+	size of the string */
+
+char	*ft_joinandfree(char *line, char *buffer)
 {
 	char	*joined;
 	int		i;
 	int		j;
 
-	joined = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	joined = malloc((ft_strlen(line) + ft_strlen(buffer) + 1) * sizeof(char));
 	if (!joined)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[i])
+	while (line[i])
 	{
-		joined[i] = s1[i];
+		joined[i] = line[i];
 		i++;
 	}
-	while (s2[j])
+	while (buffer[j])
 	{
-		joined[i] = s2[j];
+		joined[i] = buffer[j];
 		i++;
 		j++;
 	}
 	joined[i] = '\0';
-	free(s1);
+	free(line);
 	return (joined);
 }
 
-int	ft_strchr(char *s)
+/* Looks for a newline in the buffer */
+
+int	ft_strchr(char *buffer)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (buffer[i])
 	{
-		if (s[i] == '\n')
+		if (buffer[i] == '\n')
 			return (1);
 		i++;
 	}
-	if (s[i] == '\n')
+	if (buffer[i] == '\n')
 		return (1);
 	return (0);
 }
