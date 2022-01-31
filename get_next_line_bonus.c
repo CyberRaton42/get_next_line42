@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /* Function erases everything following the newline (if there's one),
 	from the output string, thus leaving only the last read line */
